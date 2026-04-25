@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>EmailLogFileService</members>
+        <members>EmailLogFileDownloaderQueueable</members>
+        <members>EmailLogFileDownloaderAPI</members>
+        <members>EmailLogFileServiceTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>vidalDevSB_Content</members>
+        <members>vidalDevSB_Instance</members>
+        <members>vidalDevSB_Setup</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>66.0</version>
+</Package>
