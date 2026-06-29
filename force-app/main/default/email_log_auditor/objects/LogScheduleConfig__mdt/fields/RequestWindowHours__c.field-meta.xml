@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RequestWindowHours__c</fullName>
+    <description>Number of hours back from job execution time to include in the log request when RequestMode__c = CustomWindow. Valid range 1–168. Ignored when RequestMode__c is Off or PreviousDay. Defaults to 24.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Request Window Hours</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

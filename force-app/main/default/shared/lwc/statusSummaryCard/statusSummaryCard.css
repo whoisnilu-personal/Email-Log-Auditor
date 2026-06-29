@@ -1,0 +1,7 @@
+.summary-card {
+    text-align: center;
+}
+.count-text {
+    font-size: var(--sds-g-font-size-heading-large);
+    font-weight: var(--sds-g-font-weight-bold);
+}

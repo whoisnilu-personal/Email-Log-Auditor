@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-p-around_small">
+        <c-filter-bar
+            start-date={startDate}
+            end-date={endDate}
+            recipient={recipient}
+            onfilterchange={handleFilterChange}>
+        </c-filter-bar>
+
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading emails" size="small"></lightning-spinner>
+        </template>
+
+        <template lwc:if={errorMessage}>
+            <div class="slds-text-color_error slds-p-around_small" role="alert">
+                {errorMessage}
+            </div>
+        </template>
+
+        <template lwc:if={hasNoRows}>
+            <div class="slds-text-color_weak slds-p-around_small">
+                No emails found for this category and filter.
+            </div>
+        </template>
+
+        <template lwc:if={rows.length}>
+            <lightning-datatable
+                key-field="id"
+                data={rows}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+    </div>
+</template>

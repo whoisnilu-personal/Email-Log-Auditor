@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Cached Email Logs" icon-name="standard:document">
+        <div class="slds-p-around_small">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading cached logs" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:if={errorMessage}>
+                <div class="slds-text-color_error slds-p-around_small" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <template lwc:if={rows.length}>
+                <lightning-datatable
+                    key-field="id"
+                    data={rows}
+                    columns={columns}
+                    onrowaction={handleRowAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+
+                <div class="slds-grid slds-grid_align-end slds-p-top_small">
+                    <lightning-button
+                        label="Previous"
+                        icon-name="utility:chevronleft"
+                        disabled={isPrevDisabled}
+                        onclick={handlePrev}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button
+                        label="Next"
+                        icon-name="utility:chevronright"
+                        icon-position="right"
+                        disabled={isNextDisabled}
+                        onclick={handleNext}>
+                    </lightning-button>
+                </div>
+            </template>
+
+            <template lwc:if={hasNoRows}>
+                <div class="slds-text-color_weak slds-p-around_small">
+                    No cached logs yet. Trigger a download to populate this list.
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

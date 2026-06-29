@@ -1,0 +1,42 @@
+:host {
+    display: block;
+}
+
+.dx0-card {
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+}
+
+.section-header {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #4B5563;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 8px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.section-header:first-of-type {
+    margin-top: 0;
+}
+
+/* Subtle refinements for lightning inputs */
+lightning-input, lightning-combobox {
+    --sds-c-input-color-border: #D1D5DB;
+    --sds-c-input-radius-border: 6px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+    margin-top: 24px;
+    border-top: 1px dashed #E5E7EB;
+}

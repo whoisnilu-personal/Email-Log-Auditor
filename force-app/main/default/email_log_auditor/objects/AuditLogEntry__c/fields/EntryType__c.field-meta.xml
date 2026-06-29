@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EntryType__c</fullName>
+    <description>Reason this row was written to the audit log.</description>
+    <label>Entry Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unmatched</fullName>
+                <default>true</default>
+                <label>Unmatched</label>
+            </value>
+            <value>
+                <fullName>MissingMessageId</fullName>
+                <default>false</default>
+                <label>Missing Message-Id</label>
+            </value>
+            <value>
+                <fullName>ParseError</fullName>
+                <default>false</default>
+                <label>Parse Error</label>
+            </value>
+            <value>
+                <fullName>OrphanedEmailMessage</fullName>
+                <default>false</default>
+                <label>Orphaned EmailMessage</label>
+            </value>
+            <value>
+                <fullName>PollRequest</fullName>
+                <default>false</default>
+                <label>Poll Request</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

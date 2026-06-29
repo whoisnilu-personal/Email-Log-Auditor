@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AuditLogEntry__c</fullName>
+    <description>Master-detail relationship to the parent AuditLogEntry__c record (EntryType = PollRequest) that groups all poll attempts for one log request.</description>
+    <label>Audit Log Entry</label>
+    <referenceTo>AuditLogEntry__c</referenceTo>
+    <relationshipLabel>Email Log Poll Requests</relationshipLabel>
+    <relationshipName>EmailLogPollRequests</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

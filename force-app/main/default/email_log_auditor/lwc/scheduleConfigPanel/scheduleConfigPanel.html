@@ -1,0 +1,137 @@
+<template>
+    <div class="dx0-card slds-p-around_large slds-m-bottom_large">
+        <h2 class="section-header">Schedule Automation</h2>
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input
+                    type="toggle"
+                    label="Enable Automation"
+                    message-toggle-active="Active"
+                    message-toggle-inactive="Paused"
+                    data-field="isEnabled"
+                    checked={config.isEnabled}
+                    onchange={handleField}>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                <lightning-combobox
+                    label="Frequency"
+                    value={config.frequency}
+                    options={frequencyOptions}
+                    data-field="frequency"
+                    onchange={handleField}>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <template lwc:if={isMinutes}>
+                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                    <lightning-input
+                        type="number"
+                        label="Interval (Minutes)"
+                        min="1"
+                        max="59"
+                        value={config.runTime}
+                        data-field="runTime"
+                        onchange={handleField}>
+                    </lightning-input>
+                </lightning-layout-item>
+            </template>
+            <template lwc:if={isDailyOrWeekly}>
+                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                    <lightning-input
+                        type="text"
+                        label="Run Time (HH:MM)"
+                        pattern="[0-2][0-9]:[0-5][0-9]"
+                        value={config.runTime}
+                        data-field="runTime"
+                        onchange={handleField}>
+                    </lightning-input>
+                </lightning-layout-item>
+            </template>
+            <template lwc:if={isWeekly}>
+                <lightning-layout-item size="12" small-device-size="4" padding="around-small">
+                    <lightning-combobox
+                        label="Day of Week"
+                        value={config.dayOfWeek}
+                        options={dayOptions}
+                        data-field="dayOfWeek"
+                        onchange={handleField}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+
+        <h2 class="section-header">Log Filters</h2>
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                <lightning-combobox
+                    label="Direction"
+                    value={config.requestDirection}
+                    options={directionOptions}
+                    data-field="requestDirection"
+                    onchange={handleField}>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" small-device-size="6" padding="around-small">
+                <lightning-input
+                    type="text"
+                    label="Email Filter (Optional)"
+                    placeholder="e.g. @example.com"
+                    value={config.requestEmailFilter}
+                    data-field="requestEmailFilter"
+                    onchange={handleField}>
+                </lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <div class="action-bar">
+            <lightning-button
+                label="Run Ad-Hoc Now"
+                variant="neutral"
+                icon-name="utility:play"
+                onclick={handleRequestNow}
+                disabled={isRequesting}>
+            </lightning-button>
+            <lightning-button
+                label="Save Configuration"
+                variant="brand"
+                icon-name="utility:save"
+                onclick={handleSave}
+                disabled={isSaving}>
+            </lightning-button>
+        </div>
+
+        <div class="slds-m-top_large slds-p-top_medium" style="border-top: 1px dashed #E5E7EB;">
+            <p class="slds-text-color_weak slds-m-bottom_x-small" style="font-size: 0.8125rem;">
+                <strong>Developer Note:</strong> To manually abort all scheduled instances from Developer Console:
+            </p>
+            <div class="slds-box slds-theme_shade slds-p-around_x-small" style="font-family: monospace; font-size: 0.75rem;">
+                for (CronTrigger job : [SELECT Id FROM CronTrigger WHERE CronJobDetail.Name LIKE 'EmailLogScheduler%']) &#123;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;System.abortJob(job.Id);<br/>
+                &#125;
+            </div>
+        </div>
+    </div>
+
+    <!-- requestNowModal (conditionally rendered) -->
+    <template lwc:if={showRequestModal}>
+        <c-request-now-modal
+            default-direction={config.requestDirection}
+            onconfirm={handleModalConfirm}
+            oncancel={handleModalCancel}>
+        </c-request-now-modal>
+    </template>
+
+    <div class="dx0-card slds-m-bottom_large">
+        <h2 class="section-header slds-p-horizontal_large slds-p-top_large" style="border:none; margin:0;">Recent Runs</h2>
+        <div class="slds-p-around_medium">
+            <lightning-datatable
+                key-field="jobId"
+                data={historyRows}
+                columns={historyColumns}
+                hide-checkbox-column
+                show-row-number-column>
+            </lightning-datatable>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Default</label>
+    <protected>false</protected>
+    <values>
+        <field>IsEnabled__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Frequency__c</field>
+        <value xsi:type="xsd:string">Daily</value>
+    </values>
+    <values>
+        <field>RunTime__c</field>
+        <value xsi:type="xsd:string">02:00</value>
+    </values>
+    <values>
+        <field>DayOfWeek__c</field>
+        <value xsi:type="xsd:string">Monday</value>
+    </values>
+    <values>
+        <field>BatchSize__c</field>
+        <value xsi:type="xsd:double">200.0</value>
+    </values>
+    <values>
+        <field>LastRunDatetime__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>NextRunDatetime__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RequestMode__c</field>
+        <value xsi:type="xsd:string">Off</value>
+    </values>
+    <values>
+        <field>RequestWindowHours__c</field>
+        <value xsi:type="xsd:double">24.0</value>
+    </values>
+    <values>
+        <field>RequestDirection__c</field>
+        <value xsi:type="xsd:string">Outbound</value>
+    </values>
+    <values>
+        <field>RequestEmailFilter__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>RequestTimeoutHours__c</field>
+        <value xsi:type="xsd:double">2.0</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,16 @@
+.success {
+    --slds-c-badge-color-background: var(--slds-g-color-palette-green-90);
+    --slds-c-badge-color-foreground: var(--slds-g-color-palette-green-30);
+}
+.error {
+    --slds-c-badge-color-background: var(--slds-g-color-palette-red-90);
+    --slds-c-badge-color-foreground: var(--slds-g-color-palette-red-30);
+}
+.warning {
+    --slds-c-badge-color-background: var(--slds-g-color-palette-orange-90);
+    --slds-c-badge-color-foreground: var(--slds-g-color-palette-orange-30);
+}
+.inverse {
+    --slds-c-badge-color-background: var(--slds-g-color-neutral-base-90);
+    --slds-c-badge-color-foreground: var(--slds-g-color-neutral-base-30);
+}

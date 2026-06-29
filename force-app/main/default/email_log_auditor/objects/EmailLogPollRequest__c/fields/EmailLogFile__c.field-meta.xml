@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmailLogFile__c</fullName>
+    <description>Lookup to the EmailLogFile__c row being polled. ProcessingStatus transitions from Requested → ReadyToDownload (or RequestTimedOut) based on poll results.</description>
+    <label>Email Log File</label>
+    <referenceTo>EmailLogFile__c</referenceTo>
+    <relationshipLabel>Email Log Poll Requests</relationshipLabel>
+    <relationshipName>EmailLogPollRequests</relationshipName>
+    <required>true</required>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

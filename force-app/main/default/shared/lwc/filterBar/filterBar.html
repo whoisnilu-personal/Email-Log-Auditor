@@ -1,0 +1,32 @@
+<template>
+    <lightning-layout multiple-rows="false" pull-to-boundary="small">
+        <lightning-layout-item size="3" padding="around-x-small">
+            <lightning-input
+                type="date" label="From"
+                data-field="startDate" value={startDate}
+                onchange={handleChange}>
+            </lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" padding="around-x-small">
+            <lightning-input
+                type="date" label="To"
+                data-field="endDate" value={endDate}
+                onchange={handleChange}>
+            </lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" padding="around-x-small">
+            <lightning-input
+                type="search" label="Recipient"
+                data-field="recipient" value={recipient}
+                onchange={handleChange}>
+            </lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="3" padding="around-x-small">
+            <lightning-combobox
+                label="Status" options={statusOptions}
+                data-field="status" value={status}
+                onchange={handleChange}>
+            </lightning-combobox>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

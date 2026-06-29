@@ -1,0 +1,151 @@
+<template>
+    <div class="configurator-shell">
+
+        <!-- ═══ Progress Stepper ═══ -->
+        <div class="stepper-container slds-p-around_medium slds-m-bottom_large">
+            <lightning-progress-indicator current-step={currentStepString} type="path" variant="base">
+                <lightning-progress-step label="Remote Site Settings" value="1"></lightning-progress-step>
+                <lightning-progress-step label="Schedule & Automation" value="2"></lightning-progress-step>
+            </lightning-progress-indicator>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             STEP 1 — Remote Site Settings Verification
+             ═══════════════════════════════════════════════ -->
+        <template lwc:if={isStep1}>
+            <div class="step-content">
+
+                <!-- Thinking Container -->
+                <lightning-card class="slds-m-bottom_medium slds-card_boundary">
+                    <div slot="actions">
+                        <template lwc:if={isAnalyzing}>
+                            <div class="modern-spinner"></div>
+                        </template>
+                        <template lwc:elseif={allSitesVerified}>
+                            <span class="slds-badge slds-theme_success">All Verified</span>
+                        </template>
+                        <template lwc:elseif={analysisComplete}>
+                            <span class="slds-badge slds-theme_warning">Action Required</span>
+                        </template>
+                    </div>
+                    
+                    <div class={gradientBarClass}></div>
+                    <div class="thinking-body slds-p-around_medium">
+                        <template for:each={thinkingLines} for:item="line">
+                            <template lwc:if={line.isSpacer}>
+                                <div key={line.id} class="thinking-spacer"></div>
+                            </template>
+                            <template lwc:else>
+                                <div key={line.id} class={line.lineClass}>
+                                    <div class="line-icon-wrapper">
+                                        <lightning-icon icon-name={line.iconName} variant={line.iconVariant} size="xx-small" class={line.iconClass}></lightning-icon>
+                                    </div>
+                                    <span class="line-text">{line.text}</span>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </lightning-card>
+
+                <!-- Site Verification Cards -->
+                <template lwc:if={analysisComplete}>
+                    <div class="sites-section">
+                        <h2 class="section-title">Remote Site Settings Status</h2>
+                        <div class="sites-grid">
+                            <template for:each={remoteSites} for:item="site">
+                                <lightning-card key={site.name} title={site.name} icon-name={site.iconName} class="slds-m-around_x-small site-lightning-card">
+                                    <div slot="actions">
+                                        <span class={site.badgeClass}>{site.statusLabel}</span>
+                                    </div>
+                                    <p class="slds-p-horizontal_small slds-text-font_monospace slds-text-color_weak slds-truncate">{site.url}</p>
+                                    <p class="slds-p-horizontal_small slds-m-top_x-small">{site.description}</p>
+                                </lightning-card>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="step-actions">
+                        <template lwc:if={hasMissingSites}>
+                            <lightning-button
+                                label={deployButtonLabel}
+                                icon-name="utility:upload"
+                                variant="brand"
+                                onclick={handleDeploySettings}
+                                disabled={isDeploying}>
+                            </lightning-button>
+                            <lightning-button
+                                label="Re-verify"
+                                icon-name="utility:refresh"
+                                variant="neutral"
+                                onclick={handleRecheck}
+                                disabled={isDeploying}>
+                            </lightning-button>
+                        </template>
+                        <template lwc:else>
+                            <lightning-button
+                                label="Re-verify"
+                                icon-name="utility:refresh"
+                                variant="neutral"
+                                onclick={handleRecheck}>
+                            </lightning-button>
+                            <lightning-button
+                                label="Continue to Schedule Setup"
+                                icon-name="utility:forward"
+                                icon-position="right"
+                                variant="brand"
+                                onclick={handleNextStep}>
+                            </lightning-button>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ═══════════════════════════════════════════════
+             STEP 2 — Schedule & Automation Configuration
+             ═══════════════════════════════════════════════ -->
+        <template lwc:if={isStep2}>
+            <div class="step-content">
+
+                <!-- Thinking Header for Step 2 -->
+                <lightning-card class="slds-m-bottom_medium slds-card_boundary">
+                    <div slot="actions">
+                        <span class="slds-badge slds-theme_info">Configuration</span>
+                    </div>
+                    <div class="thinking-progress-bar thinking-progress-bar--done"></div>
+                    <div class="thinking-body slds-p-around_medium">
+                        <div class="thinking-line thinking-line--info">
+                            <div class="line-icon-wrapper">
+                                <lightning-icon icon-name="utility:info" variant="info" size="xx-small" class="line-icon line-icon--info"></lightning-icon>
+                            </div>
+                            <span class="line-text">Remote Site Settings verified. Configure automated email log acquisition below.</span>
+                        </div>
+                        <div class="thinking-line thinking-line--detail">
+                            <div class="line-icon-wrapper">
+                                <lightning-icon icon-name="utility:chevronright" size="xx-small" class="line-icon line-icon--detail"></lightning-icon>
+                            </div>
+                            <span class="line-text">Schedule changes are deployed via the Metadata API. They persist across sessions.</span>
+                        </div>
+                    </div>
+                </lightning-card>
+
+                <!-- Embedded Schedule Config Panel -->
+                <div class="schedule-wrapper">
+                    <c-schedule-config-panel></c-schedule-config-panel>
+                </div>
+
+                <!-- Back Button -->
+                <div class="step-actions step-actions--left">
+                    <lightning-button
+                        label="Back to Remote Sites"
+                        icon-name="utility:back"
+                        variant="neutral"
+                        onclick={handleBackStep}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>
