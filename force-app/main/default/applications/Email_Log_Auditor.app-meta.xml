@@ -11,7 +11,7 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Email Log Auditor</label>
     <navType>Standard</navType>
-    <tabs>EmailLogAuditor_Tab</tabs>
+    <!-- <tabs>EmailLogAuditor_Tab</tabs> -->
     <tabs>EmailLogConfigurator_Tab</tabs>
     <tabs>EmailLogDashboard_Tab</tabs>
     <uiType>Lightning</uiType>

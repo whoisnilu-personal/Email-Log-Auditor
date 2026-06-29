@@ -926,10 +926,10 @@ public without sharing class EmailLogAcquisitionService {
     String viewStateMac,
     String viewStateCsrf
   ) {
-    String startDate = sub.startDatetime.formatGmt('M/d/yyyy');
-    String startTime = sub.startDatetime.formatGmt('h:mm a');
-    String endDate = sub.endDatetime.formatGmt('M/d/yyyy');
-    String endTime = sub.endDatetime.formatGmt('h:mm a');
+    String startDate = sub.startDatetime.date().format();
+    String startTime = sub.startDatetime.format('h:mm a');
+    String endDate = sub.endDatetime.date().format();
+    String endTime = sub.endDatetime.format('h:mm a');
     String filter = sub.emailFilter != null ? sub.emailFilter : '';
     String direction = sub.direction != null ? sub.direction : 'Outbound';
 
