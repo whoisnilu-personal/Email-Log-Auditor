@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProcessedRequiresContentDocument</fullName>
+    <active>true</active>
+    <description>A file cannot be marked Processed unless its ContentDocumentId__c has been set.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(ProcessingStatus__c, "Processed"),
+    ISBLANK(ContentDocumentId__c)
+)</errorConditionFormula>
+    <errorMessage>Processing Status cannot be set to Processed when no Content Document is attached.</errorMessage>
+</ValidationRule>

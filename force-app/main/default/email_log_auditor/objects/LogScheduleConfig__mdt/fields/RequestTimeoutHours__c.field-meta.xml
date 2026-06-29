@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RequestTimeoutHours__c</fullName>
+    <description>Number of hours after which a Requested EmailLogFile__c row is considered timed out and transitioned to RequestTimedOut by resolveTimedOutRequests(). Defaults to 2. Salesforce typically generates log files within 30 minutes; 2 hours provides a generous buffer.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Request Timeout Hours</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

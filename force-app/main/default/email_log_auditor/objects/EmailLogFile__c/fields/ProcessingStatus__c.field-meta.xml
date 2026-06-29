@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProcessingStatus__c</fullName>
+    <defaultValue>"New"</defaultValue>
+    <description>State of the file in the processing pipeline. New → Processing → Processed | Failed.</description>
+    <label>Processing Status</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>true</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Processing</fullName>
+                <default>false</default>
+                <label>Processing</label>
+            </value>
+            <value>
+                <fullName>Processed</fullName>
+                <default>false</default>
+                <label>Processed</label>
+            </value>
+            <value>
+                <fullName>Failed</fullName>
+                <default>false</default>
+                <label>Failed</label>
+            </value>
+            <value>
+                <fullName>Requested</fullName>
+                <default>false</default>
+                <label>Requested</label>
+            </value>
+            <value>
+                <fullName>RequestTimedOut</fullName>
+                <default>false</default>
+                <label>Request Timed Out</label>
+            </value>
+            <value>
+                <fullName>RequestFailed</fullName>
+                <default>false</default>
+                <label>Request Failed</label>
+            </value>
+            <value>
+                <fullName>ReadyToDownload</fullName>
+                <default>false</default>
+                <label>Ready To Download</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

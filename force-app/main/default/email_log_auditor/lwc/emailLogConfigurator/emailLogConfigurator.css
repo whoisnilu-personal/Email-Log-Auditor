@@ -1,0 +1,251 @@
+/* emailLogConfigurator.css - Revamped Clean Design (dx0 inspired) */
+:host {
+    --c-primary:        #2563EB; /* Modern indigo/blue */
+    --c-primary-light:  #EFF6FF;
+    --c-success:        #10B981; /* Clean green */
+    --c-success-light:  #ECFDF5;
+    --c-error:          #EF4444; /* Clean red */
+    --c-error-light:    #FEF2F2;
+    --c-warning:        #F59E0B;
+    --c-warning-light:  #FFFBEB;
+    
+    --c-bg-app:         #F8F9FA; /* Very light gray / off-white */
+    --c-bg-card:        #FFFFFF;
+    --c-bg-tinted:      #F3F4F6;
+    
+    --c-border:         #E5E7EB;
+    --c-border-light:   #F3F4F6;
+    
+    --c-text-main:      #111827; /* Dark slate */
+    --c-text-muted:     #4B5563; /* Cool gray */
+    --c-text-faint:     #9CA3AF;
+    
+    --c-radius:         8px;
+    --c-radius-lg:      12px;
+    --c-shadow-subtle:  0 1px 3px rgba(0, 0, 0, 0.05);
+    
+    --font-mono:        'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    display: block;
+    background-color: var(--c-bg-app);
+    min-height: calc(100vh - 110px);
+}
+
+.configurator-shell {
+    padding: 0;
+    font-family: 'Salesforce Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--c-text-main);
+}
+
+/* ───── Header ───── */
+.configurator-header {
+    background: var(--c-bg-card);
+    border-bottom: 1px solid var(--c-border);
+    padding: 24px 40px;
+}
+
+.header-content {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-icon-wrap {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--c-bg-tinted);
+    border: 1px solid var(--c-border);
+    border-radius: var(--c-radius);
+    flex-shrink: 0;
+}
+
+.header-icon-svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--c-text-main);
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-text-main);
+    margin: 0 0 4px 0;
+    letter-spacing: -0.01em;
+}
+
+.header-subtitle {
+    font-size: 0.875rem;
+    color: var(--c-text-muted);
+    margin: 0;
+}
+
+/* ───── Progress Stepper ───── */
+.stepper-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 32px 40px 0;
+}
+
+/* ───── Step Content ───── */
+.step-content {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 24px 40px 48px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Thin Top Progress Bar */
+.thinking-progress-bar {
+    height: 4px;
+    background: var(--c-primary);
+    width: 100%;
+    transform-origin: left;
+    animation: progressGrow 2s ease infinite alternate;
+}
+.thinking-progress-bar--done {
+    background: var(--c-success);
+    animation: none;
+    width: 100%;
+}
+.thinking-progress-bar--warning {
+    background: var(--c-warning);
+    animation: none;
+    width: 100%;
+}
+@keyframes progressGrow {
+    0% { transform: scaleX(0.1); opacity: 0.8; }
+    100% { transform: scaleX(1); opacity: 1; }
+}
+
+/* ───── Thinking Body (Terminal / Logs) ───── */
+.thinking-body {
+    max-height: 360px;
+    overflow-y: auto;
+    background: var(--c-bg-card);
+}
+
+/* Clean Custom Scrollbar */
+.thinking-body::-webkit-scrollbar { width: 6px; }
+.thinking-body::-webkit-scrollbar-track { background: transparent; }
+.thinking-body::-webkit-scrollbar-thumb {
+    background: var(--c-border);
+    border-radius: 3px;
+}
+
+.thinking-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 4px 0;
+    animation: fadeSlideUp 0.3s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+.line-icon-wrapper {
+    flex-shrink: 0;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+
+.line-text {
+    color: var(--c-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.thinking-line--info .line-text           { color: var(--c-text-main); font-weight: 500; }
+.thinking-line--detail .line-text         { color: var(--c-text-muted); font-family: var(--font-mono); font-size: 0.8125rem; }
+.thinking-line--success .line-text        { color: var(--c-text-main); }
+.thinking-line--error .line-text          { color: var(--c-error); }
+.thinking-line--summary-success .line-text { color: var(--c-text-main); font-weight: 600; }
+.thinking-line--summary-warning .line-text { color: var(--c-text-main); font-weight: 600; }
+.thinking-line--action .line-text         { color: var(--c-text-main); }
+
+.thinking-spacer {
+    height: 16px;
+}
+
+/* ───── Site Verification Cards ───── */
+.sites-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--c-text-main);
+    margin: 0 0 16px 0;
+}
+
+.sites-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.site-lightning-card {
+    /* Optional slight tweaks to the standard card */
+    border-radius: var(--c-radius-lg);
+    box-shadow: var(--c-shadow-subtle);
+    transition: all 0.3s ease;
+}
+
+.site-lightning-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.site-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--c-text-main);
+    margin: 0 0 4px 0;
+}
+
+.site-url {
+    font-size: 0.8125rem;
+    color: var(--c-text-muted);
+    font-family: var(--font-mono);
+    word-break: break-all;
+    margin: 0 0 12px 0;
+    padding: 4px 8px;
+    background: var(--c-bg-tinted);
+    border-radius: 4px;
+    border: 1px solid var(--c-border-light);
+}
+
+.site-desc {
+    font-size: 0.8125rem;
+    color: var(--c-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ───── Actions ───── */
+.step-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+}
+.step-actions--left {
+    justify-content: flex-start;
+}

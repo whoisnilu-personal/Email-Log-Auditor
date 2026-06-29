@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Email Delivery Overview" icon-name="standard:email">
+        <div class="slds-p-around_medium">
+            <template lwc:if={errorMessage}>
+                <div class="slds-text-color_error slds-p-bottom_small" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                <template for:each={summaryTiles} for:item="tile">
+                    <lightning-layout-item key={tile.key} size="12" small-device-size="6"
+                                           medium-device-size="3" padding="around-small">
+                        <c-status-summary-card
+                            label={tile.label}
+                            count={tile.count}
+                            icon-name={tile.iconName}
+                            variant={tile.variant}>
+                        </c-status-summary-card>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </div>
+
+        <lightning-tabset variant="scoped">
+            <template for:each={categories} for:item="cat">
+                <lightning-tab key={cat.value} label={cat.label} value={cat.value}>
+                    <c-email-category-view category={cat.value}></c-email-category-view>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </lightning-card>
+</template>

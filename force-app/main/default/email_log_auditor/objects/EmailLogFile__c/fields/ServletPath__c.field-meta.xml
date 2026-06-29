@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ServletPath__c</fullName>
+    <description>Relative path to the servlet endpoint used to download this log file (captured at list time for later download).</description>
+    <label>Servlet Path</label>
+    <length>1024</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

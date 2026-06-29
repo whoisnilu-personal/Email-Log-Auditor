@@ -1,0 +1,80 @@
+<template>
+    <lightning-card title="Email Delivery Status" icon-name="standard:email">
+        <div class="slds-p-around_small">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading delivery status" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:if={errorMessage}>
+                <div class="slds-text-color_error slds-p-around_small" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <template lwc:if={hasNoRows}>
+                <div class="slds-text-color_weak slds-p-around_small">
+                    No emails found for this record.
+                </div>
+            </template>
+
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={rows} for:item="row">
+                    <li key={row.id} class="slds-item slds-p-around_small">
+                        <div class="slds-text-heading_small slds-truncate" title={row.subject}>
+                            {row.subject}
+                        </div>
+                        <div class="slds-text-body_small slds-text-color_weak">
+                            <lightning-formatted-date-time value={row.messageDate}
+                                year="numeric" month="short" day="2-digit"
+                                hour="2-digit" minute="2-digit">
+                            </lightning-formatted-date-time>
+                            <template lwc:if={row.fromAddress}>
+                                &nbsp;• From {row.fromAddress}
+                            </template>
+                        </div>
+
+                        <template lwc:if={row.placeholderText}>
+                            <div class="slds-text-color_weak slds-p-top_x-small">
+                                {row.placeholderText}
+                            </div>
+                        </template>
+
+                        <template lwc:if={row.hasDeliveryData}>
+                            <div class="slds-p-top_x-small">
+                                <template for:each={row.entries} for:item="entry">
+                                    <div key={entry.key} class="slds-p-bottom_xx-small">
+                                        <button type="button" class="slds-button slds-button_reset"
+                                            data-key={entry.key} onclick={handleBadgeClick}>
+                                            <c-delivery-status-badge
+                                                status={entry.status}
+                                                recipient={entry.recipient}>
+                                            </c-delivery-status-badge>
+                                        </button>
+                                        <template lwc:if={entry.isExpanded}>
+                                            <div class="slds-box slds-box_x-small slds-m-top_xx-small detail-popover">
+                                                <div><strong>Recipient:</strong> {entry.recipient}</div>
+                                                <div><strong>Status:</strong> {entry.status}</div>
+                                                <div><strong>Timestamp:</strong>
+                                                    <lightning-formatted-date-time value={entry.timestamp}
+                                                        year="numeric" month="short" day="2-digit"
+                                                        hour="2-digit" minute="2-digit" second="2-digit">
+                                                    </lightning-formatted-date-time>
+                                                </div>
+                                                <template lwc:if={entry.failureReason}>
+                                                    <div><strong>Failure reason:</strong> {entry.failureReason}</div>
+                                                </template>
+                                                <template lwc:if={entry.failureCode}>
+                                                    <div><strong>Failure code:</strong> {entry.failureCode}</div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </lightning-card>
+</template>

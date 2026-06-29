@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DeliveryData__c</fullName>
+    <description>JSON array of per-recipient delivery events. Each entry: {recipient, status, timestamp, failureReason, failureCode}. Single source of truth for per-recipient delivery state. Default '[]' set by SetDeliveryStatusDefault TAF action on insert.</description>
+    <label>Delivery Data</label>
+    <length>131072</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

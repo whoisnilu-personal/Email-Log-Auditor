@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Email Log Auditor" icon-name="standard:email">
+        <div slot="actions">
+            <lightning-button
+                label="Download Now"
+                icon-name="utility:download"
+                variant="brand"
+                disabled={isRunning}
+                onclick={handleDownloadNow}>
+            </lightning-button>
+        </div>
+
+        <lightning-tabset variant="standard">
+            <lightning-tab label="Dashboard" value="dashboard">
+                <c-email-dashboard></c-email-dashboard>
+            </lightning-tab>
+            <lightning-tab label="Log Management" value="logs">
+                <c-log-management-panel></c-log-management-panel>
+            </lightning-tab>
+            <lightning-tab label="Schedule" value="schedule">
+                <c-schedule-config-panel></c-schedule-config-panel>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>
