@@ -170,7 +170,7 @@ public without sharing virtual class EmailMessageMatcherService {
             SourceFile__c = sourceFileId,
             RowNumber__c = r.csvRowNumber,
             MessageId__c = r.messageId,
-            Recipient__c = r.recipient,
+            //Recipient__c = r.recipient,
             SendDate__c = r.sendDatetime,
             FailureReason__c = reason,
             RawCsvRow__c = r.rawCsvRow != null ? r.rawCsvRow.abbreviate(32768) : null
